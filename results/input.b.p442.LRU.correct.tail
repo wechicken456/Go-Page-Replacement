@@ -1,0 +1,17 @@
+Page Table
+    0 type:MAPPED framenum:0 ondisk:0
+    1 type:MAPPED framenum:1 ondisk:0
+    2 type:MAPPED framenum:3 ondisk:0
+    3 type:STOLEN framenum:-1 ondisk:0
+    4 type:MAPPED framenum:2 ondisk:0
+Frame Table
+    0 inuse:1 dirty:0 first_use:1 last_use:14
+    1 inuse:1 dirty:0 first_use:2 last_use:13
+    2 inuse:1 dirty:0 first_use:9 last_use:12
+    3 inuse:1 dirty:0 first_use:15 last_use:15
+Pages referenced: 15
+Pages mapped: 5
+Page miss instances: 6
+Frame stolen instances: 2
+Stolen frames written to swapspace: 0
+Stolen frames recovered from swapspace: 0

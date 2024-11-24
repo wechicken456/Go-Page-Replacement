@@ -1,0 +1,22 @@
+Page size: 1
+Num frames: 4
+Num pages: 5
+Num backing blocks: 10
+Reclaim algorithm: OPTIMAL
+Page Table
+    0 type:STOLEN framenum:-1 ondisk:0
+    1 type:MAPPED framenum:1 ondisk:0
+    2 type:MAPPED framenum:0 ondisk:0
+    3 type:MAPPED framenum:2 ondisk:0
+    4 type:MAPPED framenum:3 ondisk:0
+Frame Table
+    0 inuse:1 dirty:0 first_use:13 last_use:13
+    1 inuse:1 dirty:0 first_use:2 last_use:12
+    2 inuse:1 dirty:0 first_use:9 last_use:14
+    3 inuse:1 dirty:0 first_use:5 last_use:15
+Pages referenced: 15
+Pages mapped: 5
+Page miss instances: 7
+Frame stolen instances: 3
+Stolen frames written to swapspace: 0
+Stolen frames recovered from swapspace: 0

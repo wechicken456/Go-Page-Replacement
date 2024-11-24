@@ -24,13 +24,20 @@ for ALG in ${ALGS}; do
     ./vm ${FLAGS} $ALG $INPUT > ${RESULTSDIR}/${MYOUTPUT}
 
     # find head and tail of their answers
-    tail -${HEADLINES} ${RESULTSDIR}/${MYOUTPUT} > ${RESULTSDIR}/${MYOUTPUT}.head
+    head -${HEADLINES} ${RESULTSDIR}/${MYOUTPUT} > ${RESULTSDIR}/${MYOUTPUT}.head
     tail -${TAILLINES} ${RESULTSDIR}/${MYOUTPUT} > ${RESULTSDIR}/${MYOUTPUT}.tail
 
     echo "Running diff on the last ${TAILLINES} lines of your file '<correct >myoutput'"
-    if diff -q ${RESULTSDIR}/${CORRECT}.tail ${RESULTSDIR}/${MYOUTPUT}.tail; then
-        echo "+++ PASSES   $CMD" | tee -a ${RESULTS}
+    if diff -q ${RESULTSDIR}/${CORRECT}.head ${RESULTSDIR}/${MYOUTPUT}.head; then
+        if diff -q ${RESULTSDIR}/${CORRECT}.tail ${RESULTSDIR}/${MYOUTPUT}.tail; then
+            echo "+++ PASSES   $CMD" | tee -a ${RESULTS}
+        else
+            diff ${RESULTSDIR}/${CORRECT}.head ${RESULTSDIR}/${MYOUTPUT}.head | cat -vet
+            diff ${RESULTSDIR}/${CORRECT}.tail ${RESULTSDIR}/${MYOUTPUT}.tail | cat -vet
+            echo "--- FAILS   $CMD"  | tee -a ${RESULTS}
+        fi
     else
+        diff ${RESULTSDIR}/${CORRECT}.head ${RESULTSDIR}/${MYOUTPUT}.head | cat -vet
         diff ${RESULTSDIR}/${CORRECT}.tail ${RESULTSDIR}/${MYOUTPUT}.tail | cat -vet
         echo "--- FAILS   $CMD"  | tee -a ${RESULTS}
         EXITVAL="1"

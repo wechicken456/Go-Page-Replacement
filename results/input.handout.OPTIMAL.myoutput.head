@@ -1,0 +1,5 @@
+Page size: 1024
+Num frames: 4
+Num pages: 11
+Num backing blocks: 10
+Reclaim algorithm: OPTIMAL

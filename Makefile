@@ -12,9 +12,9 @@ default: vm
 #vm: vm.o future.o 
 #vm.o: vm.h
 #future.o: vm.h
-vm:
-	echo "Makefile not customized yet"
-	exit 1
+vm: main.go
+	go build
+	mv ./main ./vm
 
 clean: 
 	rm -f *.o vm .test.results
