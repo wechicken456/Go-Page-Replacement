@@ -1,0 +1,15 @@
+10 4 10 10
+r 0
+r a
+r 14
+r 1e
+r 0
+r a
+r 14
+r 0
+r a
+r 14
+print
+debug
+r 28
+r 32

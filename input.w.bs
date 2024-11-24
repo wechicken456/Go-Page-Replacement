@@ -1,0 +1,29 @@
+# longer backing store test
+# only 2 frame and a bunch of reads and writes
+1 2 10 10
+w 0
+w 1
+w 2
+w 3
+w 4
+w 5
+w 6
+w 7
+w 8
+w 9
+# each page was written to disk ONCE, now they'll be reaccessed 5 times
+r 0
+r 1
+r 2
+r 0
+r 1
+r 2
+r 0
+r 1
+r 2
+r 0
+r 1
+r 2
+r 0
+r 1
+r 2

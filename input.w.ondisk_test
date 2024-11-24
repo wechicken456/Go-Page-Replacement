@@ -1,0 +1,86 @@
+#
+# test of the "ondisk" and "pages written to disk" code
+#
+# here MY output for it
+# Page size: 1
+# Num frames: 1
+# Num pages: 2
+# Num backing blocks: 10
+# Reclaim algorithm: LRU
+# Page Table
+#     0 type:STOLEN framenum:-1 ondisk:1
+#     1 type:MAPPED framenum:0 ondisk:0
+# Frame Table
+#     0 inuse:1 dirty:0 first_use:4 last_use:4
+# Pages referenced: 4
+# Pages mapped: 2
+# Page miss instances: 4
+# Frame stolen instances: 3
+# Stolen frames written to swapspace: 1
+# Stolen frames recovered from swapspace: 0
+# Page Table
+#     0 type:STOLEN framenum:-1 ondisk:1
+#     1 type:MAPPED framenum:0 ondisk:0
+# Frame Table
+#     0 inuse:1 dirty:0 first_use:38 last_use:38
+# Pages referenced: 38
+# Pages mapped: 2
+# Page miss instances: 38
+# Frame stolen instances: 37
+# Stolen frames written to swapspace: 2
+# Stolen frames recovered from swapspace: 17
+#
+1 1 2 10
+# read from the first page, which will NOT make it dirty
+r 0
+# read from another page, which will STEAL the frame from the first one
+r 1
+# now get that first page back, and this time WRITE to it
+w 0
+# now cause it to be stolen again.  This time, it will be dirty and will need to
+# be "written to disk"
+r 1
+print
+#
+# now get it back and write to it again
+# this will make it "dirty" again
+w 0
+# now, steal it again.  Since it's again dirty, it will need to be written back to disk
+r 1
+#
+# now alternate only reads.  Each access to page 0 will now require that the frame
+# be recovered from disk, but will NOT require that it be WRITTEN to disk when stolen
+# because it won't be "dirty" (the contents on the disk are still valid)
+#
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1
+r 0
+r 1

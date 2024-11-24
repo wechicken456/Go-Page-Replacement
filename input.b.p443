@@ -1,0 +1,24 @@
+# access trace from page 443 of the textbook
+# 
+# Note that the table printout in the book is wrong on P443, in OPTIMAL, there's a extraneous "+" 
+# second from the right.  They have the "+" on both frames 1 and 3, but it should only be on 3
+# ALSO... when page C steals a frame in END-2, it could steal from either page A or B, neither of
+# which is every used again.  I opted to steal from the lowest frame number (0), 
+# the book stole from frame 1.
+# 
+1 4 5 10
+r 0
+r 1
+r 2
+r 3
+r 4
+r 0
+r 1
+r 2
+r 3
+r 4
+r 0
+r 1
+r 2
+r 3
+r 4

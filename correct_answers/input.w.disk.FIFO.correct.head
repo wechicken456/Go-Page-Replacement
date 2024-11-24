@@ -1,0 +1,5 @@
+Page size: 1
+Num frames: 4
+Num pages: 10
+Num backing blocks: 100
+Reclaim algorithm: FIFO

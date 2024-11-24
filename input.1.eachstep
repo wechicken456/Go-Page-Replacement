@@ -1,0 +1,23 @@
+# this step tests your results after each step
+# to help you debug your program
+1 4 6 10
+print
+r 0
+print
+r 1
+print
+w 2
+print
+r 3
+print
+w 4
+print
+r 5
+print
+w 1
+print
+r 2
+print
+w 3
+print
+r 4

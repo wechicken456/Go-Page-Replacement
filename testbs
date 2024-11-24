@@ -1,0 +1,7 @@
+#!/bin/sh
+export ENVFLAGS="-w"
+EXITVAL="0"
+for FILE in input.1.eachstep input.handout input.2.only1frame input.b.p44? input.w.ondisk_test input.w.disk input.w.bs; do 
+    ./test ${FILE} || EXITVAL="1"
+done
+exit ${EXITVAL}

@@ -1,0 +1,18 @@
+# example input file from the project handout
+# arguments: pagesize  numframes  numpages numbackingblocks
+1024 4 11 10
+w 0
+w 400
+w 800
+w c00
+w 1000
+w 1400
+w 1800
+w 1c00
+w 2000
+w 2400
+r 0
+r 400
+r 800
+r c00
+r 1000

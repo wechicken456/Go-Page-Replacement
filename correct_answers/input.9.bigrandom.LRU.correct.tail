@@ -1,0 +1,207 @@
+Page Table
+    0 type:MAPPED framenum:88 ondisk:0
+    1 type:MAPPED framenum:26 ondisk:0
+    2 type:MAPPED framenum:11 ondisk:0
+    3 type:MAPPED framenum:79 ondisk:0
+    4 type:MAPPED framenum:29 ondisk:0
+    5 type:MAPPED framenum:0 ondisk:0
+    6 type:MAPPED framenum:92 ondisk:0
+    7 type:MAPPED framenum:3 ondisk:0
+    8 type:MAPPED framenum:7 ondisk:0
+    9 type:MAPPED framenum:32 ondisk:0
+   10 type:MAPPED framenum:82 ondisk:0
+   11 type:MAPPED framenum:56 ondisk:0
+   12 type:MAPPED framenum:67 ondisk:0
+   13 type:MAPPED framenum:77 ondisk:0
+   14 type:MAPPED framenum:20 ondisk:0
+   15 type:MAPPED framenum:34 ondisk:0
+   16 type:MAPPED framenum:93 ondisk:0
+   17 type:MAPPED framenum:47 ondisk:0
+   18 type:MAPPED framenum:48 ondisk:0
+   19 type:MAPPED framenum:38 ondisk:0
+   20 type:MAPPED framenum:52 ondisk:0
+   21 type:MAPPED framenum:17 ondisk:0
+   22 type:MAPPED framenum:40 ondisk:0
+   23 type:MAPPED framenum:55 ondisk:0
+   24 type:MAPPED framenum:95 ondisk:0
+   25 type:MAPPED framenum:58 ondisk:0
+   26 type:MAPPED framenum:71 ondisk:0
+   27 type:MAPPED framenum:27 ondisk:0
+   28 type:MAPPED framenum:10 ondisk:0
+   29 type:MAPPED framenum:63 ondisk:0
+   30 type:MAPPED framenum:65 ondisk:0
+   31 type:MAPPED framenum:61 ondisk:0
+   32 type:MAPPED framenum:36 ondisk:0
+   33 type:MAPPED framenum:98 ondisk:0
+   34 type:MAPPED framenum:44 ondisk:0
+   35 type:MAPPED framenum:74 ondisk:0
+   36 type:MAPPED framenum:25 ondisk:0
+   37 type:MAPPED framenum:8 ondisk:0
+   38 type:MAPPED framenum:78 ondisk:0
+   39 type:MAPPED framenum:59 ondisk:0
+   40 type:MAPPED framenum:50 ondisk:0
+   41 type:MAPPED framenum:9 ondisk:0
+   42 type:MAPPED framenum:91 ondisk:0
+   43 type:MAPPED framenum:68 ondisk:0
+   44 type:MAPPED framenum:83 ondisk:0
+   45 type:MAPPED framenum:86 ondisk:0
+   46 type:MAPPED framenum:41 ondisk:0
+   47 type:MAPPED framenum:21 ondisk:0
+   48 type:MAPPED framenum:70 ondisk:0
+   49 type:MAPPED framenum:2 ondisk:0
+   50 type:MAPPED framenum:6 ondisk:0
+   51 type:MAPPED framenum:89 ondisk:0
+   52 type:MAPPED framenum:73 ondisk:0
+   53 type:MAPPED framenum:28 ondisk:0
+   54 type:MAPPED framenum:13 ondisk:0
+   55 type:MAPPED framenum:37 ondisk:0
+   56 type:MAPPED framenum:53 ondisk:0
+   57 type:MAPPED framenum:54 ondisk:0
+   58 type:MAPPED framenum:66 ondisk:0
+   59 type:MAPPED framenum:57 ondisk:0
+   60 type:MAPPED framenum:14 ondisk:0
+   61 type:MAPPED framenum:23 ondisk:0
+   62 type:MAPPED framenum:96 ondisk:0
+   63 type:MAPPED framenum:81 ondisk:0
+   64 type:MAPPED framenum:24 ondisk:0
+   65 type:MAPPED framenum:64 ondisk:0
+   66 type:MAPPED framenum:16 ondisk:0
+   67 type:MAPPED framenum:46 ondisk:0
+   68 type:MAPPED framenum:33 ondisk:0
+   69 type:MAPPED framenum:87 ondisk:0
+   70 type:MAPPED framenum:30 ondisk:0
+   71 type:MAPPED framenum:39 ondisk:0
+   72 type:MAPPED framenum:4 ondisk:0
+   73 type:MAPPED framenum:31 ondisk:0
+   74 type:MAPPED framenum:85 ondisk:0
+   75 type:MAPPED framenum:5 ondisk:0
+   76 type:MAPPED framenum:75 ondisk:0
+   77 type:MAPPED framenum:35 ondisk:0
+   78 type:MAPPED framenum:76 ondisk:0
+   79 type:MAPPED framenum:1 ondisk:0
+   80 type:MAPPED framenum:97 ondisk:0
+   81 type:MAPPED framenum:19 ondisk:0
+   82 type:MAPPED framenum:60 ondisk:0
+   83 type:MAPPED framenum:80 ondisk:0
+   84 type:MAPPED framenum:84 ondisk:0
+   85 type:MAPPED framenum:18 ondisk:0
+   86 type:STOLEN framenum:-1 ondisk:0
+   87 type:MAPPED framenum:72 ondisk:0
+   88 type:MAPPED framenum:49 ondisk:0
+   89 type:MAPPED framenum:45 ondisk:0
+   90 type:MAPPED framenum:51 ondisk:0
+   91 type:MAPPED framenum:69 ondisk:0
+   92 type:MAPPED framenum:62 ondisk:0
+   93 type:MAPPED framenum:42 ondisk:0
+   94 type:MAPPED framenum:43 ondisk:0
+   95 type:MAPPED framenum:90 ondisk:0
+   96 type:MAPPED framenum:15 ondisk:0
+   97 type:MAPPED framenum:94 ondisk:0
+   98 type:MAPPED framenum:12 ondisk:0
+   99 type:MAPPED framenum:22 ondisk:0
+Frame Table
+    0 inuse:1 dirty:0 first_use:994390 last_use:999975
+    1 inuse:1 dirty:0 first_use:986292 last_use:999994
+    2 inuse:1 dirty:0 first_use:993262 last_use:999744
+    3 inuse:1 dirty:0 first_use:996249 last_use:999986
+    4 inuse:1 dirty:0 first_use:995700 last_use:999752
+    5 inuse:1 dirty:0 first_use:995612 last_use:999941
+    6 inuse:1 dirty:0 first_use:994217 last_use:999977
+    7 inuse:1 dirty:0 first_use:973235 last_use:999680
+    8 inuse:1 dirty:0 first_use:998817 last_use:999877
+    9 inuse:1 dirty:0 first_use:989645 last_use:999944
+   10 inuse:1 dirty:0 first_use:990051 last_use:999912
+   11 inuse:1 dirty:0 first_use:997715 last_use:999892
+   12 inuse:1 dirty:0 first_use:996536 last_use:999959
+   13 inuse:1 dirty:0 first_use:991530 last_use:999982
+   14 inuse:1 dirty:0 first_use:996108 last_use:999825
+   15 inuse:1 dirty:0 first_use:998798 last_use:999970
+   16 inuse:1 dirty:0 first_use:998914 last_use:999974
+   17 inuse:1 dirty:0 first_use:999359 last_use:999829
+   18 inuse:1 dirty:0 first_use:991970 last_use:999950
+   19 inuse:1 dirty:0 first_use:995852 last_use:999915
+   20 inuse:1 dirty:0 first_use:998960 last_use:999918
+   21 inuse:1 dirty:0 first_use:995565 last_use:999952
+   22 inuse:1 dirty:0 first_use:997503 last_use:999884
+   23 inuse:1 dirty:0 first_use:987577 last_use:999812
+   24 inuse:1 dirty:0 first_use:982000 last_use:999947
+   25 inuse:1 dirty:0 first_use:999640 last_use:999928
+   26 inuse:1 dirty:0 first_use:969720 last_use:999960
+   27 inuse:1 dirty:0 first_use:991320 last_use:999754
+   28 inuse:1 dirty:0 first_use:999494 last_use:999948
+   29 inuse:1 dirty:0 first_use:977885 last_use:999801
+   30 inuse:1 dirty:0 first_use:999699 last_use:999971
+   31 inuse:1 dirty:0 first_use:976029 last_use:999995
+   32 inuse:1 dirty:0 first_use:991927 last_use:999475
+   33 inuse:1 dirty:0 first_use:992574 last_use:999932
+   34 inuse:1 dirty:0 first_use:994251 last_use:999931
+   35 inuse:1 dirty:0 first_use:994953 last_use:999984
+   36 inuse:1 dirty:0 first_use:983254 last_use:999800
+   37 inuse:1 dirty:0 first_use:993020 last_use:999714
+   38 inuse:1 dirty:0 first_use:996726 last_use:999759
+   39 inuse:1 dirty:0 first_use:989887 last_use:999700
+   40 inuse:1 dirty:0 first_use:993201 last_use:999909
+   41 inuse:1 dirty:0 first_use:991067 last_use:999945
+   42 inuse:1 dirty:0 first_use:997874 last_use:999978
+   43 inuse:1 dirty:0 first_use:993467 last_use:999921
+   44 inuse:1 dirty:0 first_use:997741 last_use:999843
+   45 inuse:1 dirty:0 first_use:983069 last_use:999979
+   46 inuse:1 dirty:0 first_use:986754 last_use:999951
+   47 inuse:1 dirty:0 first_use:997719 last_use:999864
+   48 inuse:1 dirty:0 first_use:997794 last_use:999710
+   49 inuse:1 dirty:0 first_use:997800 last_use:999878
+   50 inuse:1 dirty:0 first_use:987358 last_use:999850
+   51 inuse:1 dirty:0 first_use:979384 last_use:999853
+   52 inuse:1 dirty:0 first_use:956657 last_use:999873
+   53 inuse:1 dirty:0 first_use:988015 last_use:999969
+   54 inuse:1 dirty:0 first_use:990989 last_use:999946
+   55 inuse:1 dirty:0 first_use:969873 last_use:999981
+   56 inuse:1 dirty:0 first_use:984686 last_use:999988
+   57 inuse:1 dirty:0 first_use:941483 last_use:999999
+   58 inuse:1 dirty:0 first_use:979595 last_use:999997
+   59 inuse:1 dirty:0 first_use:983424 last_use:999896
+   60 inuse:1 dirty:0 first_use:997012 last_use:999964
+   61 inuse:1 dirty:0 first_use:992959 last_use:999923
+   62 inuse:1 dirty:0 first_use:998055 last_use:999894
+   63 inuse:1 dirty:0 first_use:968992 last_use:999967
+   64 inuse:1 dirty:0 first_use:993829 last_use:999920
+   65 inuse:1 dirty:0 first_use:993222 last_use:999992
+   66 inuse:1 dirty:0 first_use:998108 last_use:999805
+   67 inuse:1 dirty:0 first_use:994006 last_use:999795
+   68 inuse:1 dirty:0 first_use:996050 last_use:999761
+   69 inuse:1 dirty:0 first_use:998022 last_use:999954
+   70 inuse:1 dirty:0 first_use:977166 last_use:1000000
+   71 inuse:1 dirty:0 first_use:998916 last_use:999993
+   72 inuse:1 dirty:0 first_use:999934 last_use:999934
+   73 inuse:1 dirty:0 first_use:999619 last_use:999990
+   74 inuse:1 dirty:0 first_use:958666 last_use:999963
+   75 inuse:1 dirty:0 first_use:993299 last_use:999958
+   76 inuse:1 dirty:0 first_use:999580 last_use:999972
+   77 inuse:1 dirty:0 first_use:994055 last_use:999987
+   78 inuse:1 dirty:0 first_use:970313 last_use:999901
+   79 inuse:1 dirty:0 first_use:995734 last_use:999957
+   80 inuse:1 dirty:0 first_use:993878 last_use:999936
+   81 inuse:1 dirty:0 first_use:994481 last_use:999809
+   82 inuse:1 dirty:0 first_use:997895 last_use:999998
+   83 inuse:1 dirty:0 first_use:991641 last_use:999942
+   84 inuse:1 dirty:0 first_use:993708 last_use:999834
+   85 inuse:1 dirty:0 first_use:993453 last_use:999935
+   86 inuse:1 dirty:0 first_use:997149 last_use:999905
+   87 inuse:1 dirty:0 first_use:995651 last_use:999838
+   88 inuse:1 dirty:0 first_use:999414 last_use:999989
+   89 inuse:1 dirty:0 first_use:998247 last_use:999966
+   90 inuse:1 dirty:0 first_use:994650 last_use:999908
+   91 inuse:1 dirty:0 first_use:982591 last_use:999973
+   92 inuse:1 dirty:0 first_use:976184 last_use:999996
+   93 inuse:1 dirty:0 first_use:989058 last_use:999879
+   94 inuse:1 dirty:0 first_use:978560 last_use:999797
+   95 inuse:1 dirty:0 first_use:991058 last_use:999874
+   96 inuse:1 dirty:0 first_use:998373 last_use:999983
+   97 inuse:1 dirty:0 first_use:989773 last_use:999893
+   98 inuse:1 dirty:0 first_use:993665 last_use:999898
+Pages referenced: 1000000
+Pages mapped: 100
+Page miss instances: 10135
+Frame stolen instances: 10036
+Stolen frames written to swapspace: 0
+Stolen frames recovered from swapspace: 0

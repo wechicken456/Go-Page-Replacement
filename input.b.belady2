@@ -1,0 +1,24 @@
+# access trace from page 445 of the textbook
+# Belady's Anomoly - 4 frames
+# for FIFO
+# Pages referenced: 12
+# Pages mapped: 5
+# Page miss instances: 10
+# Frame stolen instances: 6
+# Stolen frames written to swapspace: 0
+# Stolen frames recovered from swapspace: 0
+#
+1 4 5 10
+debug
+r 0
+r 1
+r 2
+r 3
+r 0
+r 1
+r 4
+r 0
+r 1
+r 2
+r 3
+r 4

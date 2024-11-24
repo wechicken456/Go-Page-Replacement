@@ -1,0 +1,27 @@
+1 4 5 10
+r 0
+r 1
+r 2
+r 3
+# we've use all the frames, so the next reference will cause a fault
+r 4
+r 0
+r 1
+r 3
+r 4
+r 0
+r 1
+r 3
+r 4
+r 0
+r 1
+r 3
+r 4
+r 0
+r 1
+r 3
+r 4
+r 0
+r 1
+r 3
+r 4

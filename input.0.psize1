@@ -1,0 +1,13 @@
+# simple test of page sizes
+# Just tests that you've done the address to page number math correctly
+# arguments: pagesize  numframes  numpages numbackingblocks
+# 
+1 5 40 10
+r 0
+r 05 
+r a
+r f
+r 14
+r 19
+r 1e
+r 23

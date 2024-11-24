@@ -1,0 +1,39 @@
+#!/bin/sh
+INPUT=$1
+EXITVAL="0"
+RESULTS=.test.results
+# use "FIFO LRU" unless environment variable ENVALGS is set
+ALGS="${ENVALGS:-FIFO LRU}"
+# use "" unless environment variable ENVFLAGS is set
+FLAGS="${ENVFLAGS:-}"
+for ALG in ${ALGS}; do
+    echo "========="
+    CMD="./vm ${FLAGS} ${ALG} ${INPUT}"
+    echo "running $CMD"
+    OUTPUT=${INPUT}.${ALG}${FLAGS}
+    RESULTSDIR=results
+    mkdir ${RESULTSDIR} 2>/dev/null
+    CORRECT=${OUTPUT}.correct
+    MYOUTPUT=${OUTPUT}.myoutput
+    cp correct_answers/${CORRECT}.* ${RESULTSDIR}
+
+    # check size of head and tail
+    HEADLINES=`wc -l < ${RESULTSDIR}/${CORRECT}.head | awk '{print $1}'`
+    TAILLINES=`wc -l < ${RESULTSDIR}/${CORRECT}.tail | awk '{print $1}'`
+
+    ./vm ${FLAGS} $ALG $INPUT > ${RESULTSDIR}/${MYOUTPUT}
+
+    # find head and tail of their answers
+    tail -${HEADLINES} ${RESULTSDIR}/${MYOUTPUT} > ${RESULTSDIR}/${MYOUTPUT}.head
+    tail -${TAILLINES} ${RESULTSDIR}/${MYOUTPUT} > ${RESULTSDIR}/${MYOUTPUT}.tail
+
+    echo "Running diff on the last ${TAILLINES} lines of your file '<correct >myoutput'"
+    if diff -q ${RESULTSDIR}/${CORRECT}.tail ${RESULTSDIR}/${MYOUTPUT}.tail; then
+        echo "+++ PASSES   $CMD" | tee -a ${RESULTS}
+    else
+        diff ${RESULTSDIR}/${CORRECT}.tail ${RESULTSDIR}/${MYOUTPUT}.tail | cat -vet
+        echo "--- FAILS   $CMD"  | tee -a ${RESULTS}
+        EXITVAL="1"
+    fi
+done
+exit ${EXITVAL}

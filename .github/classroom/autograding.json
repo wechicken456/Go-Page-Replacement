@@ -1,0 +1,234 @@
+{
+  "tests": [
+    {
+      "name": "make",
+      "setup": "chmod u+rx test*",
+      "run": "make clean vm",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.0.psize4k",
+      "setup": "",
+      "run": "./test input.0.psize4k",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.0.psize5",
+      "setup": "",
+      "run": "./test input.0.psize5",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.0.psize10",
+      "setup": "",
+      "run": "./test input.0.psize10",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.0.psize1",
+      "setup": "",
+      "run": "./test input.0.psize1",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.1.easy",
+      "setup": "",
+      "run": "./test input.1.easy",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.1.eachstep",
+      "setup": "",
+      "run": "./test input.1.eachstep",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.1.lru",
+      "setup": "",
+      "run": "./test input.1.lru",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.2.only1frame",
+      "setup": "",
+      "run": "./test input.2.only1frame",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.handout",
+      "setup": "",
+      "run": "./test input.handout",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.b.p440",
+      "setup": "",
+      "run": "./test input.b.p440",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.b.p442",
+      "setup": "",
+      "run": "./test input.b.p442",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.b.p443",
+      "setup": "",
+      "run": "./test input.b.p443",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.b.belady1",
+      "setup": "",
+      "run": "./test input.b.belady1",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.b.belady2",
+      "setup": "",
+      "run": "./test input.b.belady2",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.o.optimal",
+      "setup": "",
+      "run": "./test input.o.optimal",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.w.bs",
+      "setup": "",
+      "run": "./test input.w.bs",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.w.disk",
+      "setup": "",
+      "run": "./test input.w.disk",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.w.ondisk_test",
+      "setup": "",
+      "run": "./test input.w.ondisk_test",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "input.9.bigrandom",
+      "setup": "",
+      "run": "./test input.9.bigrandom",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "testoptimal",
+      "setup": "",
+      "run": "./testoptimal",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "testbs",
+      "setup": "",
+      "run": "./testbs",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Test results:",
+      "setup": "",
+      "run": "echo 'Test results: '; cat .test.results",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    }
+  ]
+}
