@@ -11,7 +11,7 @@ import (
 )
 
 var debug bool = false
-var useBackingBlocks bool = false
+var useBackingStore bool = false
 var pageSize int64
 var numFrames int64
 var numPages int64
@@ -33,11 +33,20 @@ type page struct {
 	onDisk    bool // only true if this page has been written to in the past
 	lastUsed  int64
 	firstUsed int64
+	bsIndex   int64
+}
+
+type bsEntry struct {
+	pageNum  int64
+	readCnt  int64
+	writeCnt int64
 }
 
 type page_metadata struct {
 	pageTable               []*page
 	pageFrames              []int64
+	backingStore            []bsEntry
+	bsNxtIndex              int64
 	numMapped               int64
 	numReferenced           int64
 	numMissed               int64
@@ -85,15 +94,12 @@ type OpEntry struct {
 }
 
 type OPTIMAL struct {
-	refList          []*RefList // nxtRef[i] = linked list of reference times for page i
-	head             *OpEntry   // head of linked list of page operations to perform
-	tail             *OpEntry
-	size             int64
-	maxFrameIndex    int64 // frame index which has the page that will be used the furthest in the future out of all the current frames
-	maxFrameTime     int64 // next use time of page at the frame maxFrameIndex
-	nxtMaxFrameIndex int64 // for second furthest, similar to maxFrameIndex
-	nxtMaxFrameTime  int64 // for second furthest, similar to maxFrameIndex
-
+	refList       []*RefList // nxtRef[i] = linked list of reference times for page i
+	head          *OpEntry   // head of linked list of page operations to perform
+	tail          *OpEntry
+	size          int64
+	maxFrameIndex int64 // frame index which has the page that will be used the furthest in the future out of all the current frames
+	maxFrameTime  int64 // next use time of page at the frame maxFrameIndex
 }
 
 var data page_metadata // holds page table, page frames, and other metadata
@@ -117,6 +123,17 @@ func (mmu *FIFO) Access(pageNum int64, offset int64, isWrite bool) {
 				data.pageTable[replace_pageNum].dirty = false
 				data.pageTable[replace_pageNum].onDisk = true
 				data.numWrittenToSwap++
+
+				if useBackingStore {
+					if data.pageTable[replace_pageNum].bsIndex == -1 { // if this this replaced page has never been written to disk before
+						data.backingStore[data.bsNxtIndex] = bsEntry{writeCnt: 1, readCnt: 0, pageNum: replace_pageNum}
+						data.pageTable[replace_pageNum].bsIndex = data.bsNxtIndex
+						data.bsNxtIndex++
+					} else {
+						bsIndex := data.pageTable[replace_pageNum].bsIndex // get the index in the backing store the this replaced page
+						data.backingStore[bsIndex].writeCnt++
+					}
+				}
 			}
 			data.pageTable[replace_pageNum].inSwap = true
 			data.pageTable[replace_pageNum].pfn = -1
@@ -133,6 +150,12 @@ func (mmu *FIFO) Access(pageNum int64, offset int64, isWrite bool) {
 					data.numRecoveredFromSwapped++
 				}
 				data.pageTable[pageNum].inSwap = false
+			}
+			if useBackingStore {
+				if data.pageTable[pageNum].bsIndex != -1 { // it has an entry in the backing store
+					bsIndex := data.pageTable[pageNum].bsIndex // get the index in the backing store the this replaced page
+					data.backingStore[bsIndex].readCnt++
+				}
 			}
 		}
 		data.pageTable[pageNum].pfn = frameIndex
@@ -193,6 +216,17 @@ func (mmu *LRU) Access(pageNum int64, offset int64, isWrite bool) {
 				data.pageTable[replace_pageNum].dirty = false
 				data.pageTable[replace_pageNum].onDisk = true
 				data.numWrittenToSwap++
+
+				if useBackingStore {
+					if data.pageTable[replace_pageNum].bsIndex == -1 { // if this this replaced page has never been written to disk before
+						data.backingStore[data.bsNxtIndex] = bsEntry{writeCnt: 1, readCnt: 0, pageNum: replace_pageNum}
+						data.pageTable[replace_pageNum].bsIndex = data.bsNxtIndex
+						data.bsNxtIndex++
+					} else {
+						bsIndex := data.pageTable[replace_pageNum].bsIndex // get the index in the backing store the this replaced page
+						data.backingStore[bsIndex].writeCnt++
+					}
+				}
 			}
 			data.pageTable[replace_pageNum].inSwap = true
 			data.pageTable[replace_pageNum].pfn = -1
@@ -245,6 +279,13 @@ func (mmu *LRU) Access(pageNum int64, offset int64, isWrite bool) {
 					data.numRecoveredFromSwapped++
 				}
 				data.pageTable[pageNum].inSwap = false
+			}
+
+			if useBackingStore {
+				if data.pageTable[pageNum].bsIndex != -1 { // it has an entry in the backing store
+					bsIndex := data.pageTable[pageNum].bsIndex // get the index in the backing store the this replaced page
+					data.backingStore[bsIndex].readCnt++
+				}
 			}
 		}
 
@@ -414,39 +455,6 @@ func (mmu *OPTIMAL) Init() {
 	printMetadata()
 }
 
-// newPageTime is the next use time of the page to be newly inserted into a frame
-// this function sets maxFrameIndex to newPageFrameIndex if newPageTime is greater than maxFrameTime
-// // if times are equal, set the one with the smaller index
-// func (mmu *OPTIMAL) CheckReplaceFrameIndex(newPageTime int64, newPageFrameIndex int64) {
-// 	if newPageTime > mmu.maxFrameTime {
-// 		mmu.nxtMaxFrameIndex = mmu.maxFrameIndex
-// 		mmu.nxtMaxFrameTime = mmu.maxFrameTime
-
-// 		mmu.maxFrameIndex = newPageFrameIndex
-// 		mmu.maxFrameTime = newPageTime
-
-// 	} else if newPageTime == mmu.maxFrameTime {
-// 		if newPageFrameIndex < mmu.maxFrameIndex {
-// 			mmu.nxtMaxFrameIndex = mmu.maxFrameIndex
-// 			mmu.nxtMaxFrameTime = mmu.maxFrameTime
-
-// 			mmu.maxFrameIndex = newPageFrameIndex
-// 			mmu.maxFrameTime = newPageTime
-// 		}
-// 	} else {
-// 		if newPageTime > mmu.nxtMaxFrameTime {
-// 			mmu.nxtMaxFrameIndex = newPageFrameIndex
-// 			mmu.nxtMaxFrameTime = newPageTime
-
-// 		} else if newPageTime == mmu.nxtMaxFrameTime {
-// 			if newPageFrameIndex < mmu.nxtMaxFrameIndex {
-// 				mmu.nxtMaxFrameIndex = newPageFrameIndex
-// 				mmu.nxtMaxFrameTime = newPageTime
-// 			}
-// 		}
-// 	}
-// }
-
 func (mmu *OPTIMAL) getReplaceFrameIndex() int64 {
 	var max_time int64 = 0
 	var max_index int64 = 0
@@ -476,18 +484,29 @@ func (mmu *OPTIMAL) Access(pageNum int64, offset int64, isWrite bool) {
 
 		// frame is full, steal a page.
 		if mmu.size == numFrames {
-			//frameIndex = mmu.maxFrameIndex
 			frameIndex = mmu.getReplaceFrameIndex()
-
 			replace_pageNum := data.pageFrames[frameIndex] // virtual page number to be replaced
-			if data.pageTable[replace_pageNum].dirty {     // if the page to be replaced is dirty, write it to swap
+
+			if data.pageTable[replace_pageNum].dirty { // if the page to be replaced is dirty, write it to swap
 				data.pageTable[replace_pageNum].dirty = false
 				data.pageTable[replace_pageNum].onDisk = true
 				data.numWrittenToSwap++
+
+				if useBackingStore {
+					if data.pageTable[replace_pageNum].bsIndex == -1 { // if this this replaced page has never been written to disk before
+						data.backingStore[data.bsNxtIndex] = bsEntry{writeCnt: 1, readCnt: 0, pageNum: replace_pageNum}
+						data.pageTable[replace_pageNum].bsIndex = data.bsNxtIndex
+						data.bsNxtIndex++
+					} else {
+						bsIndex := data.pageTable[replace_pageNum].bsIndex // get the index in the backing store the this replaced page
+						data.backingStore[bsIndex].writeCnt++
+					}
+				}
 			}
 			data.pageTable[replace_pageNum].inSwap = true
 			data.pageTable[replace_pageNum].pfn = -1
 			data.numStolen++
+
 		} else { // mmu.size < numFrames, we still have space in the frame, use it instead of stealing pages
 			frameIndex = mmu.size
 			mmu.size++
@@ -501,6 +520,12 @@ func (mmu *OPTIMAL) Access(pageNum int64, offset int64, isWrite bool) {
 					data.numRecoveredFromSwapped++
 				}
 				data.pageTable[pageNum].inSwap = false
+			}
+			if useBackingStore {
+				if data.pageTable[pageNum].bsIndex != -1 { // it has an entry in the backing store
+					bsIndex := data.pageTable[pageNum].bsIndex // get the index in the backing store the this replaced page
+					data.backingStore[bsIndex].readCnt++
+				}
 			}
 		}
 
@@ -519,12 +544,8 @@ func (mmu *OPTIMAL) Access(pageNum int64, offset int64, isWrite bool) {
 			data.pageTable[pageNum].dirty = true
 		}
 	}
+
 	mmu.refList[pageNum].head = mmu.refList[pageNum].head.nxt // move the reference list of the current page by 1 to update the next use time
-	// if mmu.refList[pageNum].head == nil {                     // this is the last time page pageNum will be referenced
-	// 	mmu.CheckReplaceFrameIndex((1<<63)-1, frameIndex)
-	// } else {
-	// 	mmu.CheckReplaceFrameIndex(mmu.refList[pageNum].head.timeRef, frameIndex)
-	// }
 	data.pageTable[pageNum].lastUsed = cnt
 	data.numReferenced++
 }
@@ -583,11 +604,16 @@ func printMetadata() {
 				s.WriteString("MAPPED")
 				s.WriteString(fmt.Sprintf(" framenum:%v", data.pageTable[i].pfn))
 			}
+
 			s.WriteString(" ondisk:")
 			if data.pageTable[i].onDisk {
 				s.WriteString("1")
 			} else {
 				s.WriteString("0")
+			}
+
+			if useBackingStore && data.pageTable[i].bsIndex != -1 {
+				s.WriteString(fmt.Sprintf(" bsblock:%v", data.pageTable[i].bsIndex))
 			}
 		}
 		fmt.Printf("%v\n", s.String())
@@ -622,6 +648,41 @@ func printMetadata() {
 		fmt.Printf("%v\n", s.String())
 	}
 
+	if useBackingStore {
+		fmt.Println("Backing Store Table")
+		var totalRead int64 = 0
+		var totalWrite int64 = 0
+		var cnt int64 = 0
+		for i = 0; i < numBackingBlocks; i++ {
+			var s strings.Builder
+			bsBlock := data.backingStore[i]
+			tmp := fmt.Sprintf("%v", i)
+			for j := 0; j <= 4-len(tmp); j++ {
+				s.WriteString(" ")
+			}
+			s.WriteString(tmp)
+			s.WriteString(" inuse:")
+			if bsBlock.pageNum == -1 {
+				s.WriteString("0")
+			} else {
+				s.WriteString("1")
+				s.WriteString(" page:")
+				s.WriteString(fmt.Sprintf("%v", bsBlock.pageNum))
+				s.WriteString(" reads:")
+				s.WriteString(fmt.Sprintf("%v", bsBlock.readCnt))
+				s.WriteString(" writes:")
+				s.WriteString(fmt.Sprintf("%v", bsBlock.writeCnt))
+				totalRead += bsBlock.readCnt
+				totalWrite += bsBlock.writeCnt
+				cnt++
+			}
+			fmt.Printf("%v\n", s.String())
+		}
+		fmt.Printf("  TTL BS blocks inuse: %v\n", cnt)
+		fmt.Printf("  TTL BS blocks read: %v\n", totalRead)
+		fmt.Printf("  TTL BS blocks written: %v\n", totalWrite)
+	}
+
 	fmt.Printf("Pages referenced: %v\n", data.numReferenced)
 	fmt.Printf("Pages mapped: %v\n", data.numMapped)
 	fmt.Printf("Page miss instances: %v\n", data.numMissed)
@@ -635,7 +696,7 @@ var mmu MMU
 func main() {
 	argsWithoutProg := os.Args[1:]
 	if argsWithoutProg[0] == "-w" {
-		useBackingBlocks = true
+		useBackingStore = true
 		argsWithoutProg = argsWithoutProg[1:]
 	}
 	file, ok := os.Open(argsWithoutProg[1])
@@ -672,13 +733,17 @@ func main() {
 	pageTable := make([]*page, numPages)
 	var i int64
 	for i = 0; i < numPages; i++ {
-		pageTable[i] = &page{pfn: -2, dirty: false, inSwap: false, onDisk: false}
+		pageTable[i] = &page{pfn: -2, bsIndex: -1, dirty: false, inSwap: false, onDisk: false}
 	}
 	pageFrames := make([]int64, numFrames)
 	for i = 0; i < numFrames; i++ {
 		pageFrames[i] = -1
 	}
-	data = page_metadata{pageTable: pageTable, pageFrames: pageFrames}
+	bs := make([]bsEntry, numBackingBlocks)
+	for i = 0; i < numBackingBlocks; i++ {
+		bs[i] = bsEntry{readCnt: 0, writeCnt: 0, pageNum: -1}
+	}
+	data = page_metadata{pageTable: pageTable, pageFrames: pageFrames, backingStore: bs}
 
 	if argsWithoutProg[0] == "FIFO" {
 		mmu = &FIFO{nxt_idx: make(chan int64, numFrames)}

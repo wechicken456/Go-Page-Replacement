@@ -43,21 +43,21 @@
 +++ PASSES   ./vm  OPTIMAL input.b.p443
 +++ PASSES   ./vm  OPTIMAL input.o.optimal
 +++ PASSES   ./vm  OPTIMAL input.9.bigrandom
---- FAILS   ./vm -w FIFO input.1.eachstep
---- FAILS   ./vm -w LRU input.1.eachstep
---- FAILS   ./vm -w FIFO input.handout
---- FAILS   ./vm -w LRU input.handout
---- FAILS   ./vm -w FIFO input.2.only1frame
---- FAILS   ./vm -w LRU input.2.only1frame
---- FAILS   ./vm -w FIFO input.b.p440
---- FAILS   ./vm -w LRU input.b.p440
---- FAILS   ./vm -w FIFO input.b.p442
---- FAILS   ./vm -w LRU input.b.p442
---- FAILS   ./vm -w FIFO input.b.p443
---- FAILS   ./vm -w LRU input.b.p443
---- FAILS   ./vm -w FIFO input.w.ondisk_test
---- FAILS   ./vm -w LRU input.w.ondisk_test
---- FAILS   ./vm -w FIFO input.w.disk
---- FAILS   ./vm -w LRU input.w.disk
---- FAILS   ./vm -w FIFO input.w.bs
---- FAILS   ./vm -w LRU input.w.bs
++++ PASSES   ./vm -w FIFO input.1.eachstep
++++ PASSES   ./vm -w LRU input.1.eachstep
++++ PASSES   ./vm -w FIFO input.handout
++++ PASSES   ./vm -w LRU input.handout
++++ PASSES   ./vm -w FIFO input.2.only1frame
++++ PASSES   ./vm -w LRU input.2.only1frame
++++ PASSES   ./vm -w FIFO input.b.p440
++++ PASSES   ./vm -w LRU input.b.p440
++++ PASSES   ./vm -w FIFO input.b.p442
++++ PASSES   ./vm -w LRU input.b.p442
++++ PASSES   ./vm -w FIFO input.b.p443
++++ PASSES   ./vm -w LRU input.b.p443
++++ PASSES   ./vm -w FIFO input.w.ondisk_test
++++ PASSES   ./vm -w LRU input.w.ondisk_test
++++ PASSES   ./vm -w FIFO input.w.disk
++++ PASSES   ./vm -w LRU input.w.disk
++++ PASSES   ./vm -w FIFO input.w.bs
++++ PASSES   ./vm -w LRU input.w.bs
