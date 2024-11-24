@@ -1,4 +1,4 @@
-# Go-Page-Replacement
+# Go-Page-Replacement-Algorithms
 Page replacement algorithms FIFO, LRU, and OPTIMAL implemented in Golang. All implementations are of my own. 
 
 This is one of the assignments from CS4420 - Operating Systems Fall 2024, Ohio University, taught by Dr. Ostermann. 
