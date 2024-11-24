@@ -44,7 +44,7 @@ type bsEntry struct {
 
 type page_metadata struct {
 	pageTable               []*page
-	pageFrames              []int64
+	pageFrames              []int64 // pageFrames[i] store the page number of the page at frame i
 	backingStore            []bsEntry
 	bsNxtIndex              int64
 	numMapped               int64
@@ -76,16 +76,19 @@ type LRU struct {
 	size      int64
 }
 
+// for OPTIMAL, each entry corrsepond to a reference time of a particular page
 type RefListEntry struct {
 	timeRef int64
 	nxt     *RefListEntry
 }
 
+// for OPTIMAL, each page has a RefList, which is a linked list of its ascending reference times
 type RefList struct {
 	head *RefListEntry
 	tail *RefListEntry
 }
 
+// for OPTIMAL, to parse inputs
 type OpEntry struct {
 	pageNum int64
 	offset  int64
